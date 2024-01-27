@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
     "start": "node builde/server.ts",
-    "build": "tsup src --out-dir build"
+    "migrate": "npx prisma migrate dev",
+    "build": "tsup src --out-dir build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "vitest": "vitest --ui"
   },
   "author": "Vinícius Silva",
   "license": "ISC",
@@ -15,10 +19,14 @@
     "@types/node": "^20.11.8",
     "@typescript-eslint/eslint-plugin": "6.19.1",
     "@typescript-eslint/parser": "6.19.1",
+    "@vitest/coverage-v8": "1.2.2",
+    "@vitest/ui": "1.2.2",
     "eslint": "8.56.0",
     "tsup": "^8.0.1",
     "tsx": "^4.7.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite-tsconfig-paths": "4.3.1",
+    "vitest": "1.2.2"
   },
   "dependencies": {
     "@fastify/swagger": "^8.14.0",
