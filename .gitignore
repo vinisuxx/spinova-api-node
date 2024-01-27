@@ -1,2 +1,5 @@
-node_mudules
+node_modules
+prisma
 build
+yarn*
+.env
