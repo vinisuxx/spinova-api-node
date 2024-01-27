@@ -1,0 +1,25 @@
+{
+  "name": "spinova-api-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch src/server.ts",
+    "start": "node builde/server.ts",
+    "build": "tsup src --out-dir build"
+  },
+  "author": "Vinícius Silva",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.8",
+    "tsup": "^8.0.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@fastify/swagger": "^8.14.0",
+    "chalk": "^5.3.0",
+    "fastify": "^4.25.2"
+  }
+}
