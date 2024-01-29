@@ -1,6 +1,6 @@
 node_modules
 coverage
-/prisma
+prisma/migrations
 build
 yarn*
 .env
