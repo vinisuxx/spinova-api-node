@@ -1,7 +1,7 @@
-import { ArtistsRepository } from '@/api/repositories/artists-repository';
+import { IArtistsRepository } from './../interfaces/artists-repository';
 import { Artist, Prisma } from '@prisma/client';
  
-export class InMemoryArtistsRepository implements ArtistsRepository {
+export class InMemoryArtistsRepository implements IArtistsRepository {
   public artists: Artist[] = [];
   async create(data: Prisma.ArtistCreateInput) {
     const artist:Artist = {
@@ -22,6 +22,6 @@ export class InMemoryArtistsRepository implements ArtistsRepository {
   async findByName(name: string) {
     const artist = this.artists.find((item) => item.name === name);
 
-    return artist || null;
+    return artist ?? null;
   }
 }
