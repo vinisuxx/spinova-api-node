@@ -7,11 +7,12 @@
     "dev": "tsx watch src/server.ts",
     "start": "node builde/server.ts",
     "migrate": "npx prisma migrate dev",
-    "build": "tsup src --out-dir build",
+    "build": "tsup src --out-dir build && yarn sentry:sourcemaps",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "vitest": "vitest --ui"
+    "vitest": "vitest --ui",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org spinova --project node ../../../../../build && sentry-cli sourcemaps upload --org spinova --project node ../../../../../build"
   },
   "author": "Vinícius Silva",
   "license": "ISC",
@@ -37,6 +38,8 @@
     "@paralleldrive/cuid2": "2.2.2",
     "@prisma/client": "5.8.1",
     "@react-email/components": "0.0.14",
+    "@sentry/cli": "2.26.0",
+    "@sentry/node": "7.98.0",
     "chalk": "^5.3.0",
     "dayjs": "1.11.10",
     "dotenv": "16.4.1",

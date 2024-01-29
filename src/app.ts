@@ -4,11 +4,19 @@ import { env } from './env';
 import cookies from '@fastify/cookie';
 import jwt from '@fastify/jwt';
 import cors from '@fastify/cors';
+import * as Sentry from '@sentry/node';
 import { UnauthorizedError } from './services/errors/unauthorized-error';
 import { usersRoutes } from './api/controllers/users/routes';
 import { User } from '@prisma/client';
 
 export const app = fastify();
+
+Sentry.init({
+  dsn: env.SENTRY_DNS,
+  environment: env.NODE_ENV,
+  tracesSampleRate: 1.0,
+  attachStacktrace: true,
+});
 
 app.register(usersRoutes);
 app.register(cors, {
@@ -46,6 +54,8 @@ app.setErrorHandler((error, _, reply ) => {
       issue: error.format()
     });
   }
+
+  Sentry.captureException(error);
   
   if (env.NODE_ENV !== 'production') {
     console.log(error);

@@ -26,17 +26,13 @@ export class CreateAuthenticateLinkService {
 
     console.log(authLink.toString());
 
-    try {
-      const result = await resend.emails.send({
+    if (env.SEND_AUTH_LINK_EMAIL) {
+      await resend.emails.send({
         from: 'Spinova <noreply@spinova.store>',
         to: userFromEmail.email,
         subject: '[Spinova] Auth magic link',
         react: AuthLinkEmailTemplate(authLink.toString())
       });
-
-      console.log(result);
-    } catch (error) {
-      console.log(error);
     }
   }
 }
